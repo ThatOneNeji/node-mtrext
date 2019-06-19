@@ -1,5 +1,7 @@
 # Node.js MtrExt
 
+[![Build Status](https://travis-ci.org/ThatOneNeji/node-mtrext.svg?branch=master)](https://travis-ci.org/ThatOneNeji/node-mtrext)
+
 Node.js wrapper for the `mtr` command / tool.
 
 This project is based heavily on https://github.com/Kami/node-mtr 

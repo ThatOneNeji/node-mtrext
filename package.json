@@ -1,0 +1,33 @@
+{
+    "name": "mtrext",
+    "description": "Node.js wrapper for the mtr command / tool.",
+    "version": "1.0.0",
+    "author": "ThatOneNeji",
+    "contributors": [],
+    "keywords": [
+        "traceroute",
+        "tracert",
+        "hops",
+        "latency check",
+        "trace route",
+        "mtr"
+    ],
+    "homepage": "https://github.com/ThatOneNeji/node-mtrext",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ThatOneNeji/node-mtrext"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "whiskey": "0.8.4",
+        "jshint": "2.10.2"
+    },
+    "scripts": {
+        "lint": "./scripts/lint.sh"
+    },
+    "engines": {
+        "node": ">= 8.8.0 && < 13.0.0"
+    },
+    "main": "./lib/index.js",
+    "license": "MIT"
+}

@@ -111,6 +111,60 @@ Parameter | Notes
 
 "**data**" - This contains the "**raw**" output from mtr and the parsed data ("**hops**") based upon that. The "**raw**" output is usefull if there is a parsing issue.
 
+## Troubleshooting
+From time to time things may go wrong. To that end I've tried to pad out the err messages as much as possible.
+Using the following code block we can view the error(s)
+```javascript
+mtr.on('error', function(err) {
+    console.log(err);
+});
+```
+### Bad paramters for mtr
+Because of the different flavours of mtr, there could be an issue with the parameters that get sent to mtr. The following result set shows how that would look like. "data.results.raw" has the error.
+```json
+{ Error
+    at ChildProcess.<anonymous> (/data/projects/node/mtr_test/node_modules/mtrext/lib/mtrext.js:113:19)
+    at ChildProcess.emit (events.js:198:13)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:248:12)
+  data:
+   { args:
+      [ '-4',
+        '-o LSDR NBAW JMXI CCCC',
+        '-r',
+        '-w',
+        '--psize',
+        60,
+        '192.168.100.1' ],
+     code: 1,
+     status: 'failed',
+     timetaken: [ 0, 175462135 ],
+     results: { raw: 'Unknown field identifier: C\n' } } }
+```
+
+### mtr missing or can not be located
+Looking at https://nodejs.org/api/errors.html#errors_common_system_errors one can get a better idea of what the system error means. In this case 'mtr' is not found.
+```json
+{ Error: spawn mtr ENOENT
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:240:19)
+    at onErrorNT (internal/child_process.js:415:16)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:832:11)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:622:3)
+  errno: 'ENOENT',
+  code: 'ENOENT',
+  syscall: 'spawn mtr',
+  path: 'mtr',
+  spawnargs:
+   [ '-4',
+     '-o LSDR NBAW JMXI',
+     '-r',
+     '-w',
+     '--psize',
+     60,
+     '192.168.100.1' ] }
+```
+
 ## Referances 
 `mtr` man page https://linux.die.net/man/8/mtr
 

@@ -7,14 +7,29 @@ Node.js wrapper for the `mtr` command / tool.
 This project is based heavily on https://github.com/Kami/node-mtr 
 I was going to fork that project but I've realised that my fork would contain breaking changes when compared to the results from the original package (node-mtr), hence 'MtrExt' -> "Mtr Extended"
 
-## Installation
+
+# Table of contents
+1. [Installation](#Installation)
+2. [Using](#Using)
+    * [Example](#Example)
+    * [Results](#Results)
+3. [Understanding the example](#Understandingtheexample)
+4. [Understanding the results](#Understandingtheresults)
+5. [Troubleshooting](#Troubleshooting)
+    * [Bad paramters for mtr](#Badparamtersformtr)
+    * [mtr missing or can not be located](#mtrmissingorcannotbelocated)
+6. [Referances](#Referances)
+    * [-o FIELDS](#oFIELDS)
+7. [Documentation](#Documentation)
+
+##  1. <a name='Installation'></a>Installation
 
 ```bash
 npm install mtrext
 ```
 
-## Using
-### Example
+##  2. <a name='Using'></a>Using
+###  * <a name='Example'></a>Example
 server.js
 ```javascript
 var mtrClient = require('mtrext').MtrExt;
@@ -27,7 +42,7 @@ mtr.on('error', function(err) {
     console.error(err);
 });
 ```
-### Results
+###  * <a name='Results'></a>Results
 ```json
 {
 	"args": [
@@ -85,15 +100,15 @@ mtr.on('error', function(err) {
 }
 ```
 
-## Understanding the example
+##  3. <a name='Understandingtheexample'></a>Understanding the example
 ```javascript
 var mtr = new mtrClient('127.0.0.1', { resolveDns: true, packetLen: 60 });
 ```
-This sets up mtrext to use the following parameters "resolveDns" and "packetlen" which are both optional.
+This sets up `mtrext` to use the following parameters "resolveDns" and "packetlen" which are both optional.
 From "man mtr" for "packetlen"
 > If set to a negative number, every iteration will use a different, random packet size up to that number.
 
-## Understanding the results
+##  4. <a name='Understandingtheresults'></a>Understanding the results
 "**args**" - This shows the end user exactly what paramters was passed on to the mtr command. This is shown in case you want to manually re-run the mtr command.
 Parameter | Notes
 ------------ | -------------
@@ -103,15 +118,17 @@ Parameter | Notes
 -w | This option puts mtr into wide report mode.  When in this mode, mtr will not cut hostnames in the report.
 --psize | This option sets the packet size used for probing.  It is in bytes, inclusive IP and ICMP headers.
 60 | If set to a negative number, every iteration will use a different, random packet size up to that number.
-127.0.0.1 | 
+127.0.0.1 | This is the target node that we are using
 		
-"**code**" - The return code from the mtr command
+"**code**" - The return code from the mtr command.
+
 "**status**" - This is internally generated to indicate if there were any problems.
+
 "**timetaken**" - This is based on the values coming back from "hrtime" [seconds, nanoseconds]  https://nodejs.org/api/process.html#process_process_hrtime_time 
 
 "**data**" - This contains the "**raw**" output from mtr and the parsed data ("**hops**") based upon that. The "**raw**" output is usefull if there is a parsing issue.
 
-## Troubleshooting
+##  5. <a name='Troubleshooting'></a>Troubleshooting
 From time to time things may go wrong. To that end I've tried to pad out the err messages as much as possible.
 Using the following code block we can view the error(s)
 ```javascript
@@ -119,9 +136,9 @@ mtr.on('error', function(err) {
     console.log(err);
 });
 ```
-### Bad paramters for mtr
+###  * <a name='Badparamtersformtr'></a>Bad paramters for mtr
 Because of the different flavours of mtr, there could be an issue with the parameters that get sent to mtr. The following result set shows how that would look like. "data.results.raw" has the error.
-```json
+```
 { Error
     at ChildProcess.<anonymous> (/data/projects/node/mtr_test/node_modules/mtrext/lib/mtrext.js:113:19)
     at ChildProcess.emit (events.js:198:13)
@@ -141,9 +158,11 @@ Because of the different flavours of mtr, there could be an issue with the param
      results: { raw: 'Unknown field identifier: C\n' } } }
 ```
 
-### mtr missing or can not be located
-Looking at https://nodejs.org/api/errors.html#errors_common_system_errors one can get a better idea of what the system error means. In this case 'mtr' is not found.
-```json
+###  * <a name='mtrmissingorcannotbelocated'></a>mtr missing or can not be located
+Looking at https://nodejs.org/api/errors.html#errors_common_system_errors one can get a better idea of what the system error means. 
+In this case 'mtr' is not found.
+> Please note that so far, the windows platform is not supported as I can't find a cli version of mtr.
+```
 { Error: spawn mtr ENOENT
     at Process.ChildProcess._handle.onexit (internal/child_process.js:240:19)
     at onErrorNT (internal/child_process.js:415:16)
@@ -165,11 +184,11 @@ Looking at https://nodejs.org/api/errors.html#errors_common_system_errors one ca
      '192.168.100.1' ] }
 ```
 
-## Referances 
+##  6. <a name='Referances'></a>Referances 
 `mtr` man page https://linux.die.net/man/8/mtr
 
-### -o FIELDS
-Parameter | Notes
+###  * <a name='oFIELDS'></a>-o FIELDS
+Parameter | Description
 ------------ | -------------
 L | Loss ratio          
 S | Sent Packets        
@@ -183,3 +202,8 @@ J | Current Jitter
 M | Jitter Mean/Avg.    
 X | Worst Jitter        
 I | Interarrival Jitter 
+
+##  7. <a name='Documentation'></a>Documentation
+There is now dynamically generated documentation, that is built, when ```npm install``` is run.
+Those files will be located under the 'documentation' folder. 
+The reasoning for adding dynamically generated documentation, is, that if there was anyone else who wanted to fork this project or get a better understanding of how this all works, then they would have a starting point.

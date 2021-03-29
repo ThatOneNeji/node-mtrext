@@ -1,7 +1,7 @@
 {
     "name": "mtrext",
     "description": "Node.js wrapper for the mtr command/tool.",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "author": "ThatOneNeji",
     "contributors": [],
     "keywords": [
@@ -19,9 +19,10 @@
     },
     "dependencies": {},
     "devDependencies": {
-        "eslint": "^7.2.0",
+        "eslint": "^7.23.0",
+        "eslint-config-google": "^0.14.0",
         "ink-docstrap": "^1.3.2",
-        "jsdoc": "^3.6.4"
+        "jsdoc": "^3.6.6"
     },
     "scripts": {
         "documentation": "./node_modules/.bin/jsdoc -c jsdoc.json lib/mtrext.js",

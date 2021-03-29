@@ -1,20 +1,28 @@
 {
     "env": {
         "commonjs": true,
-        "es6": true,
+        "es2020": true,
         "node": true
     },
-    "extends": "eslint:recommended",
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
+    "extends": [
+        "google"
+    ],
     "parserOptions": {
-        "ecmaVersion": 2018
+        "ecmaVersion": 11
     },
     "rules": {
-        "no-console": [
-            1
+        "indent": 0,
+        "max-len": "off",
+        "comma-dangle": "off",
+        "eol-last": "off",
+        "object-curly-spacing": "off",
+        "space-before-function-paren": [
+            "error",
+            {
+                "anonymous": "never",
+                "named": "never",
+                "asyncArrow": "always"
+            }
         ]
     }
 }

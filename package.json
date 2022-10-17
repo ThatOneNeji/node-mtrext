@@ -25,7 +25,7 @@
         "jsdoc": "^3.6.11"
     },
     "scripts": {
-        "documentation": "./node_modules/.bin/jsdoc -c jsdoc.json lib/mtrext.js",
+        "documentation": "./node_modules/.bin/jsdoc -R README.md -c jsdoc.json lib/mtrext.js",
         "lint": "./node_modules/.bin/eslint lib/mtrext.js"
     },
     "main": "./lib/index.js",

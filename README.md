@@ -103,7 +103,7 @@ mtr.on('error', function(err) {
 
 ## 3. <a name='Understandingtheexample'></a>Understanding the example
 ```javascript
-var mtr = new mtrClient('127.0.0.1', { resolveDns: true, packetLen: 60 });
+const mtr = new mtrClient('127.0.0.1', { resolveDns: true, packetLen: 60 });
 ```
 This sets up `mtrext` to use the following parameters "resolveDns" and "packetlen" which are both optional.
 From "man mtr" for "packetlen"

@@ -1,7 +1,5 @@
 # Node.js MtrExt
 
-[![Build Status](https://travis-ci.org/ThatOneNeji/node-mtrext.svg?branch=master)](https://travis-ci.org/ThatOneNeji/node-mtrext)
-
 Node.js wrapper for the `mtr` command / tool.
 
 This project is based heavily on https://github.com/Kami/node-mtr 
@@ -33,8 +31,8 @@ npm install mtrext
 
   server.js
 ```javascript
-var mtrClient = require('mtrext').MtrExt;
-var mtr = new mtrClient('192.168.0.1', { resolveDns: true, packetLen: 60 });
+const mtrClient = require('mtrext').MtrExt;
+const mtr = new mtrClient('192.168.0.1', { resolveDns: true, packetLen: 60 });
 mtr.traceroute();
 mtr.on('end', function(results) {
     console.log(JSON.stringify(results));
@@ -103,7 +101,7 @@ mtr.on('error', function(err) {
 
 ## 3. <a name='Understandingtheexample'></a>Understanding the example
 ```javascript
-var mtr = new mtrClient('127.0.0.1', { resolveDns: true, packetLen: 60 });
+const mtr = new mtrClient('127.0.0.1', { resolveDns: true, packetLen: 60 });
 ```
 This sets up `mtrext` to use the following parameters "resolveDns" and "packetlen" which are both optional.
 From "man mtr" for "packetlen"
@@ -205,6 +203,6 @@ X | Worst Jitter
 I | Inter-arrival Jitter 
 
 ## 7. <a name='Documentation'></a>Documentation
-There is now dynamically generated documentation that is built when ```npm install``` is run.
+There is now dynamically generated documentation that is built when ```npm run documentation``` is run.
 Those files will be located under the 'documentation' folder. 
 The reasoning for adding dynamically generated documentation is that if there was anyone else who wanted to fork this project or get a better understanding of how this all works, then they would have a starting point.
